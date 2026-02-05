@@ -32,7 +32,7 @@ jobs:
             --noconfirm \
             --windowed \
             --onefile \
-            --icon heart.ico \
+            --icon heart.icns \
             love_byTiago_v2.py
           ls -la dist
 
