@@ -23,16 +23,27 @@ jobs:
           python -m pip install --upgrade pip
           pip install pygame pyinstaller
 
-      - name: Build macOS standalone app
+      - name: List repo files (debug)
+        run: ls -la
+
+      - name: Build macOS app with PyInstaller
         run: |
           pyinstaller \
+            --noconfirm \
             --windowed \
             --onefile \
             --icon heart.ico \
             love_byTiago_v2.py
+          ls -la dist
+
+      - name: Zip the .app
+        run: |
+          cd dist
+          zip -r macos-app.zip *.app
+          cd ..
 
       - name: Upload macOS app artifact
         uses: actions/upload-artifact@v4
         with:
           name: macos-app
-          path: dist/*.app
+          path: dist/macos-app.zip
